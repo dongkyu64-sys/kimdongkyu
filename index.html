@@ -14,7 +14,275 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="style.css" />
+<style>
+/* ============================================================
+   디자인 토큰
+   배움/성장을 상징하는 딥 파인그린 + 따뜻한 골드 + 종이 질감 크림
+   ============================================================ */
+:root{
+  --ink:#0d3f7e;        /* 딥 에듀케이션 블루 (신뢰/배움) */
+  --ink-2:#1657b0;
+  --gold:#1565d8;       /* 밝은 포인트 블루 (안내자의 빛) */
+  --gold-deep:#0d4eb0;
+  --gold-soft:#cfe1f7;  /* 연한 하늘색 하이라이트 */
+  --paper:#f3f7fc;      /* 깨끗한 쿨 화이트 배경 */
+  --paper-2:#e8f0fa;
+  --card:#ffffff;
+  --text:#19222e;
+  --muted:#5d6b7b;
+  --line:#dce6f2;
+  --shadow:0 18px 45px -28px rgba(13,63,126,.5);
+  --radius:18px;
+  --maxw:1140px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"Noto Sans KR",system-ui,sans-serif;
+  color:var(--text);
+  background:var(--paper);
+  line-height:1.7;
+  letter-spacing:-.01em;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.serif{font-family:"Gowun Batang",serif}
+.wrap{width:min(100% - 40px,var(--maxw));margin-inline:auto}
+
+/* ===================== 상단 고정 헤더 ===================== */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(243,247,252,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,box-shadow .3s,background .3s;
+}
+.topbar.scrolled{border-color:var(--line);box-shadow:0 6px 20px -16px rgba(13,63,126,.55)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700}
+.brand .mark{
+  width:38px;height:38px;border-radius:11px;flex:0 0 auto;
+  background:linear-gradient(140deg,var(--ink),var(--ink-2));
+  color:var(--gold-soft);display:grid;place-items:center;
+  font-family:"Gowun Batang",serif;font-size:20px;font-weight:700;
+  box-shadow:inset 0 0 0 1.5px rgba(21,101,216,.45);
+}
+.brand .txt small{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
+.brand .txt strong{display:block;font-size:15px;line-height:1.2}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:14.5px;font-weight:500}
+.nav-links a{color:var(--ink);position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--gold);transition:width .25s}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{width:100%}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;
+  border:none;border-radius:999px;padding:12px 22px;line-height:1;
+  transition:transform .15s,box-shadow .2s,background .2s;
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;box-shadow:0 10px 24px -12px rgba(13,78,176,.5)}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:var(--ink-2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.6px var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.nav .btn{padding:11px 20px}
+.hamburger{display:none;width:44px;height:44px;border:1px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.hamburger span{width:20px;height:2px;background:var(--ink);transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* 모바일 드로어 */
+.drawer{position:fixed;inset:68px 0 auto 0;background:var(--paper);border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:55;padding:14px 20px 22px}
+.drawer.open{transform:translateY(0)}
+.drawer a{display:block;padding:13px 4px;font-weight:600;border-bottom:1px solid var(--line);color:var(--ink)}
+.drawer .btn{width:100%;justify-content:center;margin-top:14px}
+
+/* ===================== 히어로 ===================== */
+.hero{position:relative;padding:60px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--gold-deep);letter-spacing:.04em;text-transform:none;margin-bottom:18px}
+.eyebrow::before{content:"";width:26px;height:1.5px;background:var(--gold)}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.28;font-weight:700;letter-spacing:-.02em}
+.hero h1 .hl{color:var(--ink);position:relative;white-space:nowrap}
+.hero h1 .hl::after{content:"";position:absolute;left:-2px;right:-2px;bottom:.08em;height:.34em;background:var(--gold-soft);z-index:-1;border-radius:3px}
+.hero p.lead{margin-top:22px;font-size:clamp(16px,2vw,18px);color:#46505c;max-width:30em}
+.hero-cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
+.hero-trust{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
+.hero-trust .t{display:flex;flex-direction:column}
+.hero-trust .t b{font-family:"Gowun Batang",serif;font-size:26px;color:var(--ink);line-height:1}
+.hero-trust .t span{font-size:13px;color:var(--muted);margin-top:5px}
+.hero-trust .sep{width:1px;background:var(--line)}
+
+.portrait{position:relative}
+.portrait .frame{
+  position:relative;border-radius:24px;overflow:hidden;aspect-ratio:1/1.05;
+  background:linear-gradient(150deg,var(--ink),var(--ink-2));
+  box-shadow:var(--shadow);border:6px solid #fff;
+}
+.portrait .frame img{width:100%;height:100%;object-fit:cover}
+.portrait .frame .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gold-soft);gap:10px}
+.portrait .frame .ph .big{font-family:"Gowun Batang",serif;font-size:46px;font-weight:700}
+.portrait .frame .ph small{font-size:14px;opacity:.85}
+.portrait .badge{
+  position:absolute;left:-14px;bottom:24px;background:#fff;border-radius:14px;
+  padding:13px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:11px;
+  border:1px solid var(--line);
+}
+.portrait .badge .dot{width:10px;height:10px;border-radius:50%;background:#3aa55d;box-shadow:0 0 0 4px rgba(58,165,93,.18)}
+.portrait .badge b{font-size:14px}
+.portrait .badge span{font-size:12px;color:var(--muted);display:block}
+
+/* ===================== 섹션 공통 ===================== */
+.section{padding:74px 0}
+.section-head{text-align:center;max-width:640px;margin:0 auto 48px}
+.section-head .eyebrow{justify-content:center}
+.section-head h2{font-size:clamp(24px,3.4vw,34px);font-weight:700;line-height:1.35}
+.section-head p{margin-top:14px;color:var(--muted);font-size:16px}
+
+/* ===================== 왜 필요한가 (3카드) ===================== */
+.why{background:var(--paper-2)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;transition:transform .25s,box-shadow .25s}
+.why-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.why-card .ic{width:52px;height:52px;border-radius:14px;background:rgba(21,101,216,.12);color:var(--gold-deep);display:grid;place-items:center;margin-bottom:18px}
+.why-card .ic svg{width:26px;height:26px}
+.why-card h3{font-size:19px;margin-bottom:9px}
+.why-card p{color:#515c66;font-size:15px}
+
+/* ===================== 과정 디렉토리 (시그니처) ===================== */
+.courses{background:linear-gradient(180deg,var(--paper),#fafcff)}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px}
+.tab{border:1px solid var(--line);background:#fff;color:var(--ink);font-family:inherit;font-weight:600;font-size:14px;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.2s}
+.tab:hover{border-color:var(--gold)}
+.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.course{
+  position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:22px 22px 20px;display:flex;flex-direction:column;gap:6px;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  animation:pop .4s both;
+}
+.course:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--gold-soft)}
+.course .cat{font-size:11.5px;font-weight:700;color:var(--gold-deep);letter-spacing:.03em}
+.course h4{font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.course h4 .arrow{color:var(--gold);transition:transform .2s}
+.course:hover h4 .arrow{transform:translate(3px,-3px)}
+.course p{font-size:13.5px;color:var(--muted)}
+.course .tag{margin-top:8px;align-self:flex-start;font-size:11px;font-weight:700;color:var(--ink);background:var(--gold-soft);padding:3px 9px;border-radius:7px}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ===================== 상담 신청 폼 ===================== */
+.apply{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.apply::before{content:"";position:absolute;top:-120px;right:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(21,101,216,.3),transparent 70%)}
+.apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;position:relative}
+.apply-info .eyebrow{color:var(--gold-soft)}
+.apply-info .eyebrow::before{background:var(--gold-soft)}
+.apply-info h2{font-size:clamp(24px,3.4vw,34px);line-height:1.4;font-weight:700}
+.apply-info p{margin-top:16px;color:#c6d8ef;font-size:16px;max-width:30em}
+.apply-list{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.apply-list li{list-style:none;display:flex;gap:11px;align-items:flex-start;font-size:15px;color:#dde8f6}
+.apply-list .ck{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--gold);display:grid;place-items:center;margin-top:1px}
+.apply-list .ck svg{width:13px;height:13px;stroke:#fff}
+
+.form-card{background:#fff;color:var(--text);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+.form-card h3{font-size:21px;margin-bottom:5px}
+.form-card .sub{font-size:14px;color:var(--muted);margin-bottom:20px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13.5px;font-weight:700;margin-bottom:7px;color:var(--ink)}
+.field label .req{color:var(--gold-deep)}
+.field input,.field select,.field textarea{
+  width:100%;font-family:inherit;font-size:15px;color:var(--text);
+  border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;background:#fafcff;
+  transition:border-color .2s,box-shadow .2s;
+}
+.field textarea{resize:vertical;min-height:74px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(21,101,216,.16)}
+.field.err input,.field.err select{border-color:#d9534f;background:#fdf3f3}
+.field .msg{font-size:12px;color:#d9534f;margin-top:6px;display:none}
+.field.err .msg{display:block}
+.consent{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--muted);margin:4px 0 18px}
+.consent input{width:18px;height:18px;margin-top:2px;flex:0 0 auto;accent-color:var(--gold-deep)}
+.form-card .btn{width:100%;justify-content:center;font-size:16px;padding:15px}
+.form-note{text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
+
+/* 신청 완료 카드 */
+.done{display:none;text-align:center;padding:14px 6px 6px}
+.done.show{display:block;animation:pop .4s both}
+.done .seal{width:70px;height:70px;border-radius:50%;background:rgba(58,165,93,.12);color:#2e8b52;display:grid;place-items:center;margin:0 auto 16px}
+.done .seal svg{width:36px;height:36px;stroke:#2e8b52}
+.done h3{font-size:22px;margin-bottom:8px}
+.done p{color:var(--muted);font-size:15px;margin-bottom:18px}
+.done .summary{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:14px;margin-bottom:20px}
+.done .summary div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.done .summary div:last-child{border:none}
+.done .summary b{color:var(--muted);font-weight:600}
+.done .btn{width:100%;justify-content:center;margin-bottom:9px}
+
+/* ===================== 푸터 ===================== */
+.footer{background:#0d2c54;color:#b4c5dd;padding:48px 0 30px;font-size:14px}
+.footer-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer .brand .txt strong{color:#fff}
+.footer .brand .txt small{color:#8aa0c0}
+.footer nav{display:flex;gap:22px;flex-wrap:wrap}
+.footer nav a:hover{color:var(--gold-soft)}
+.footer-bottom{padding-top:20px;font-size:12.5px;color:#7f93b0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* 맨 위로 */
+.to-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:.3s;z-index:50;box-shadow:var(--shadow)}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--gold-deep)}
+
+/* 스크롤 등장 */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+
+/* ===================== 수강생 후기 ===================== */
+.reviews{background:var(--paper-2)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rev-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 10px 30px -24px rgba(13,63,126,.5);transition:transform .25s,box-shadow .25s}
+.rev-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.rev-card .quote{font-size:14.5px;color:#3c4854;line-height:1.75;flex:1;position:relative;padding-top:8px}
+.rev-card .quote::before{content:"\201C";position:absolute;top:-12px;left:-3px;font-family:"Gowun Batang",serif;font-size:44px;color:var(--gold-soft);line-height:1}
+.rev-card .who{display:flex;align-items:center;gap:11px;border-top:1px solid var(--line);padding-top:15px}
+.rev-card .ava{width:40px;height:40px;border-radius:50%;flex:0 0 auto;background:linear-gradient(140deg,var(--ink),var(--ink-2));color:#fff;display:grid;place-items:center;font-weight:700;font-size:16px}
+.rev-card .who b{display:block;font-size:14px;color:var(--text)}
+.rev-card .who span{display:block;font-size:12px;color:var(--gold-deep);font-weight:600;margin-top:2px}
+.rev-cases{margin-top:44px;text-align:center}
+.rev-cases h3{font-size:18px;margin-bottom:18px;color:var(--ink)}
+.case-list{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.case{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 15px;font-size:13px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:7px}
+.case .ck{color:var(--gold);display:grid;place-items:center}
+.case .ck svg{width:14px;height:14px}
+.rev-note{text-align:center;font-size:12.5px;color:var(--muted);margin:28px auto 0;max-width:680px;line-height:1.6}
+@media (max-width:920px){.rev-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.rev-grid{grid-template-columns:1fr}}
+
+/* ===================== 반응형 ===================== */
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .portrait{max-width:380px;margin-inline:auto;order:-1}
+  .why-grid{grid-template-columns:1fr}
+  .course-grid{grid-template-columns:repeat(2,1fr)}
+  .apply-grid{grid-template-columns:1fr;gap:34px}
+  .nav-links{display:none}
+  .nav .btn-gold{display:none}
+  .hamburger{display:flex}
+}
+@media (max-width:540px){
+  .course-grid{grid-template-columns:1fr}
+  .hero-trust{gap:18px}
+  .section{padding:56px 0}
+  .footer-top,.footer-bottom{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+</style>
 </head>
 <body>
 
@@ -30,6 +298,7 @@
     </a>
     <nav class="nav-links" aria-label="주요 메뉴">
       <a href="#why">학습관리</a>
+      <a href="#reviews">합격후기</a>
       <a href="#courses">과정안내</a>
       <a href="#apply">상담신청</a>
     </nav>
@@ -42,6 +311,7 @@
 
 <div class="drawer" id="drawer">
   <a href="#why">학습 관리가 필요한 이유</a>
+  <a href="#reviews">합격·취득 후기</a>
   <a href="#courses">전체 과정 안내</a>
   <a href="#apply">무료 상담 신청</a>
   <a href="#apply" class="btn btn-gold">💌 무료 학습컨설팅 신청</a>
@@ -83,6 +353,83 @@
         <div><b>지금 상담 가능</b><span>카카오톡 실시간 응대</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ===================== 수강생 후기 / 합격·취득 사례 ===================== -->
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">수강생들의 진짜 이야기</span>
+      <h2 class="serif">함께한 분들이<br>먼저 증명해 주셨습니다</h2>
+      <p>실제 수강생들이 남겨주신 후기와 합격·취득 사례입니다. 개인정보 보호를 위해 이름은 일부만 표기했어요.</p>
+    </div>
+
+    <div class="rev-grid">
+      <article class="rev-card reveal">
+        <p class="quote">제가 이번에 대학교에 가게 됐어요! 지원한 학교 모두 합격했고, 가장 가고 싶던 학교로 진학합니다. 그동안 잘 알려주시고 함께해 주셔서 정말 감사해요.</p>
+        <div class="who"><span class="ava">강</span><div><b>강○현 님</b><span>간호 분야 대학 편입 합격</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">원하던 대학원에 모두 합격했어요. 건국대 교육대학원은 지원자가 몰려 포기할까 했는데, 늦은 나이에 도전한 점을 높이 평가받은 것 같아요. 현직에 있으면서도 덕분에 수월하게 마쳤습니다.</p>
+        <div class="who"><span class="ava">대</span><div><b>대학원 합격 · 현직자</b><span>교육대학원 합격</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">직장을 다니며 출퇴근·식사 시간에 강의를 듣고 기출을 풀었어요. 모바일로도 문제를 풀 수 있어 꾸준히 했더니 직업상담사 시험에 합격했습니다.</p>
+        <div class="who"><span class="ava">직</span><div><b>직장 병행 수강생</b><span>직업상담사 2급 합격</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">주변에서 진짜 부러워했어요. 다른 곳은 연락이 안 된다고들 하는데, 늘 잘 챙겨주셔서 믿을 수 있는 곳이라는 걸 체감했습니다.</p>
+        <div class="who"><span class="ava">최</span><div><b>최○우 님</b><span>사회복지사 과정</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">문화센터에서 일할 수 있는 길을 이렇게 빨리 열어주셔서 감사합니다. 업종을 바꾸기까지 5년을 봤는데, 그 시간을 크게 줄일 수 있을 것 같아요. 너무너무 추천합니다.</p>
+        <div class="who"><span class="ava">김</span><div><b>김○리 님</b><span>미술지도사 자격 취득</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">독학사 1단계 4과목을 모두 합격했어요. 유튜브 강의를 찾아보며 독학했는데, 중간중간 챙겨주셔서 끝까지 할 수 있었습니다.</p>
+        <div class="who"><span class="ava">독</span><div><b>독학사 합격 수강생</b><span>독학사 4과목 합격</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">학점 신청도 학위 신청도 잘 마쳤어요. 항상 친절하게, 답도 빨리 주셔서 감사했습니다. 주변에 많이 소개할게요!</p>
+        <div class="who"><span class="ava">가</span><div><b>가○나 님</b><span>학위 취득</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">매경테스트에서 우수 성적을 받았어요. 학점 인정 신청 시기까지 바로 안내해 주셔서 타이밍을 놓치지 않았습니다.</p>
+        <div class="who"><span class="ava">매</span><div><b>매경TEST 우수 수강생</b><span>매경TEST 우수 성적</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <p class="quote">매번 친절하게 답변해 주시고, 덕분에 학위 신청까지 잘 마무리할 수 있었습니다. 정말 감사합니다.</p>
+        <div class="who"><span class="ava">김</span><div><b>김○아 님</b><span>학위 취득</span></div></div>
+      </article>
+    </div>
+
+    <div class="rev-cases reveal">
+      <h3>합격 · 취득 사례</h3>
+      <div class="case-list">
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>동국대학교 편입 합격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>건국대학교 편입 합격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>동남보건대 방사선학과 편입 합격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>간호·보건계열 대학 편입 합격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>건국대 교육대학원 합격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>독학사 4·5과목 합격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>매경TEST 우수 성적</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>직업상담사 2급 합격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>사회복지사 2급 자격 취득</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>보육교사 2급 자격 취득</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>장애영유아 보육교사 자격</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>미술지도사 자격 취득</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>종합미용 자격·미용업 창업</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>사회복지학사 학위 취득</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>심리학사 학위 취득</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>체육학사 학위 취득</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>아동·가족 전문학사 학위</span>
+        <span class="case"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>성적우수 장학금 수여</span>
+      </div>
+    </div>
+
+    <p class="rev-note reveal">위 내용은 실제 수강생의 후기와 합격·자격 취득 사례를 바탕으로 작성했으며, 개인정보 보호를 위해 성명·생년월일·증명서 번호 등은 표기하지 않았습니다. 관련 원본 자료는 기관에서 보관하고 있습니다.</p>
   </div>
 </section>
 
@@ -240,6 +587,155 @@
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
 </button>
 
-<script src="script.js"></script>
+<script>
+/* =========================================================
+   과정 데이터 (원본 사이트의 실제 링크로 연결)
+   ========================================================= */
+const COURSES = [
+  {name:"학점은행제", cat:"기본 과정", group:"popular", tag:"가장 많이 찾는 길", desc:"학위·자격 취득의 출발점. 학점 설계부터 시작하세요.", url:"https://dongmento.myportfolio.com/16a2a113c4e3d3"},
+  {name:"사회복지사", cat:"국가자격", group:"popular", tag:"인기", desc:"사회복지사 2급, 학점은행제로 안정적으로 취득.", url:"https://dongmento.myportfolio.com/16a2a11f7aab67"},
+  {name:"보육교사 · 장애영유아보육교사", cat:"국가자격", group:"popular", tag:"인기", desc:"보육교사 2급 자격, 실습까지 함께 관리해 드립니다.", url:"https://dongmento.myportfolio.com/3"},
+  {name:"대학원 진학", cat:"진학", group:"degree", tag:"2026", desc:"학사 학위 취득 후 대학원 진학까지 설계.", url:"https://dongmento.myportfolio.com/16a30dd9e1d2db"},
+  {name:"대학교 편입", cat:"편입", group:"degree", tag:"2026", desc:"편입을 위한 학점 준비와 전략을 안내합니다.", url:"https://dongmento.myportfolio.com/16a30dd8411022"},
+  {name:"산업기사 · 기사", cat:"국가기술자격", group:"license", tag:"응시자격", desc:"산업안전·건설안전·소방·전기 등 기사 응시자격 확보.", url:"https://dongmento.myportfolio.com/16a2a150707c76"},
+  {name:"청소년지도사", cat:"국가자격", group:"license", tag:"", desc:"청소년지도사 자격 취득 경로를 안내합니다.", url:"https://dongmento.myportfolio.com/16a30dddd77daf"},
+  {name:"심리상담사 (국가자격증)", cat:"국가자격", group:"license", tag:"", desc:"국가 공인 심리상담 관련 자격 취득 과정.", url:"https://dongmento.myportfolio.com/16a2a11b2d3d23"},
+  {name:"심리상담사 (학회자격증)", cat:"민간/학회", group:"license", tag:"", desc:"학회 발급 심리상담 자격, 실무 중심 과정.", url:"https://dongmento.myportfolio.com/16a30ddf4bae10"},
+  {name:"도서관 사서", cat:"국가자격", group:"license", tag:"", desc:"준사서·사서 자격을 학점은행제로 준비.", url:"https://dongmento.myportfolio.com/2"},
+  {name:"예체능 (체육 · 미용)", cat:"전공", group:"license", tag:"", desc:"체육·미용 전공 학위 및 자격 과정.", url:"https://dongmento.myportfolio.com/1"},
+  {name:"기타 교육 과정", cat:"전체", group:"etc", tag:"", desc:"위에 없는 분야도 문의 주시면 안내해 드립니다.", url:"https://dongmento.myportfolio.com/16a2a13854fc8b"},
+  {name:"스펙업 자격증", cat:"스펙업", group:"etc", tag:"", desc:"취업·이직에 보탬이 되는 자격증을 모았습니다.", url:"https://dongmento.myportfolio.com/16a2a153bc24e5"},
+  {name:"임상심리사 온라인 실습 수련", cat:"실습 수련", group:"etc", tag:"온라인", desc:"임상심리사 실습 수련을 온라인으로 진행.", url:"https://dongmento.myportfolio.com/16a2a139b9f4a0"},
+  {name:"ISO 국제심사원", cat:"국제자격", group:"etc", tag:"", desc:"ISO 국제심사원 자격 취득 과정 안내.", url:"https://dongmento.myportfolio.com/1-1"},
+];
+
+/* 과정 카드 렌더링 */
+const grid = document.getElementById('courseGrid');
+function renderCourses(filter){
+  grid.innerHTML = '';
+  const list = COURSES.filter(c => filter==='all' || c.group===filter);
+  list.forEach((c,i)=>{
+    const a = document.createElement('a');
+    a.href = c.url; a.target = "_blank"; a.rel = "noopener";
+    a.className = 'course';
+    a.style.animationDelay = (i*0.04)+'s';
+    a.innerHTML = `
+      <span class="cat">${c.cat}</span>
+      <h4>${c.name}<span class="arrow">↗</span></h4>
+      <p>${c.desc}</p>
+      ${c.tag ? `<span class="tag">${c.tag}</span>` : ''}
+    `;
+    grid.appendChild(a);
+  });
+}
+renderCourses('all');
+
+/* 탭 필터 */
+document.getElementById('tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('.tab');
+  if(!btn) return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderCourses(btn.dataset.filter);
+});
+
+/* =========================================================
+   헤더 스크롤 효과 + 맨 위로 버튼
+   ========================================================= */
+const topbar = document.getElementById('topbar');
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY;
+  topbar.classList.toggle('scrolled', y > 8);
+  toTop.classList.toggle('show', y > 600);
+}, {passive:true});
+toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+/* =========================================================
+   모바일 메뉴
+   ========================================================= */
+const ham = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+function toggleMenu(force){
+  const open = force ?? !drawer.classList.contains('open');
+  drawer.classList.toggle('open', open);
+  ham.classList.toggle('open', open);
+  ham.setAttribute('aria-expanded', open);
+}
+ham.addEventListener('click', ()=>toggleMenu());
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>toggleMenu(false)));
+
+/* =========================================================
+   스크롤 등장 애니메이션
+   ========================================================= */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* =========================================================
+   연락처 자동 하이픈
+   ========================================================= */
+const phone = document.getElementById('phone');
+phone.addEventListener('input', ()=>{
+  let v = phone.value.replace(/\D/g,'').slice(0,11);
+  if(v.length < 4) phone.value = v;
+  else if(v.length < 8) phone.value = v.replace(/(\d{3})(\d+)/, '$1-$2');
+  else phone.value = v.replace(/(\d{3})(\d{4})(\d+)/, '$1-$2-$3');
+});
+
+/* =========================================================
+   폼 검증 & 제출
+   ========================================================= */
+const form = document.getElementById('applyForm');
+const doneCard = document.getElementById('doneCard');
+
+function setErr(id, on){ document.getElementById(id).classList.toggle('err', on); }
+
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const name = document.getElementById('name');
+  const course = document.getElementById('course');
+  const agree = document.getElementById('agree');
+  const phoneOk = /^01[016789]-\d{3,4}-\d{4}$/.test(phone.value);
+
+  const nameErr = name.value.trim() === '';
+  const phoneErr = !phoneOk;
+  const courseErr = course.value === '';
+
+  setErr('f-name', nameErr);
+  setErr('f-phone', phoneErr);
+  setErr('f-course', courseErr);
+
+  if(nameErr || phoneErr || courseErr){
+    document.querySelector('.field.err input, .field.err select')?.focus();
+    return;
+  }
+  if(!agree.checked){
+    alert('개인정보 수집·이용에 동의해 주세요.');
+    return;
+  }
+
+  // 완료 화면에 요약 표시
+  const memo = document.getElementById('memo').value.trim();
+  document.getElementById('summary').innerHTML = `
+    <div><b>이름</b><span>${name.value}</span></div>
+    <div><b>연락처</b><span>${phone.value}</span></div>
+    <div><b>관심 과정</b><span>${course.value}</span></div>
+    ${memo ? `<div><b>메모</b><span>${memo}</span></div>` : ''}`;
+
+  form.style.display = 'none';
+  doneCard.classList.add('show');
+  doneCard.scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  form.reset();
+  document.querySelectorAll('.field').forEach(f=>f.classList.remove('err'));
+  doneCard.classList.remove('show');
+  form.style.display = 'block';
+  form.scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
 </body>
 </html>
