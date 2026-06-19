@@ -22,7 +22,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  font-family:"Noto Sans KR",system-ui,sans-serif;
+  font-family:"Pretendard",-apple-system,system-ui,sans-serif;
   color:var(--text);
   background:var(--paper);
   line-height:1.7;
@@ -31,7 +31,7 @@ body{
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.serif{font-family:"Gowun Batang",serif}
+.serif{font-family:"Pretendard",sans-serif}
 .wrap{width:min(100% - 40px,var(--maxw));margin-inline:auto}
 
 /* ===================== 상단 고정 헤더 ===================== */
@@ -49,7 +49,7 @@ img{max-width:100%;display:block}
   width:38px;height:38px;border-radius:11px;flex:0 0 auto;
   background:linear-gradient(140deg,var(--ink),var(--ink-2));
   color:var(--gold-soft);display:grid;place-items:center;
-  font-family:"Gowun Batang",serif;font-size:20px;font-weight:700;
+  font-family:"Pretendard",sans-serif;font-size:20px;font-weight:700;
   box-shadow:inset 0 0 0 1.5px rgba(21,101,216,.45);
 }
 .brand .txt small{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
@@ -95,7 +95,7 @@ img{max-width:100%;display:block}
 .hero-cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
 .hero-trust{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
 .hero-trust .t{display:flex;flex-direction:column}
-.hero-trust .t b{font-family:"Gowun Batang",serif;font-size:26px;color:var(--ink);line-height:1}
+.hero-trust .t b{font-family:"Pretendard",sans-serif;font-size:26px;color:var(--ink);line-height:1}
 .hero-trust .t span{font-size:13px;color:var(--muted);margin-top:5px}
 .hero-trust .sep{width:1px;background:var(--line)}
 
@@ -107,7 +107,7 @@ img{max-width:100%;display:block}
 }
 .portrait .frame img{width:100%;height:100%;object-fit:cover}
 .portrait .frame .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gold-soft);gap:10px}
-.portrait .frame .ph .big{font-family:"Gowun Batang",serif;font-size:46px;font-weight:700}
+.portrait .frame .ph .big{font-family:"Pretendard",sans-serif;font-size:46px;font-weight:700}
 .portrait .frame .ph small{font-size:14px;opacity:.85}
 .portrait .badge{
   position:absolute;left:-14px;bottom:24px;background:#fff;border-radius:14px;
@@ -228,7 +228,7 @@ img{max-width:100%;display:block}
 .rev-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 10px 30px -24px rgba(13,63,126,.5);transition:transform .25s,box-shadow .25s}
 .rev-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .rev-card .quote{font-size:14.5px;color:#3c4854;line-height:1.75;flex:1;position:relative;padding-top:8px}
-.rev-card .quote::before{content:"\201C";position:absolute;top:-12px;left:-3px;font-family:"Gowun Batang",serif;font-size:44px;color:var(--gold-soft);line-height:1}
+.rev-card .quote::before{content:"\201C";position:absolute;top:-12px;left:-3px;font-family:"Pretendard",sans-serif;font-size:44px;color:var(--gold-soft);line-height:1}
 .rev-card .who{display:flex;align-items:center;gap:11px;border-top:1px solid var(--line);padding-top:15px}
 .rev-card .ava{width:40px;height:40px;border-radius:50%;flex:0 0 auto;background:linear-gradient(140deg,var(--ink),var(--ink-2));color:#fff;display:grid;place-items:center;font-weight:700;font-size:16px}
 .rev-card .who b{display:block;font-size:14px;color:var(--text)}
