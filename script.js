@@ -33,7 +33,6 @@ function renderCourses(filter){
       <span class="cat">${c.cat}</span>
       <h4>${c.name}<span class="arrow">↗</span></h4>
       <p>${c.desc}</p>
-      ${c.tag ? `<span class="tag">${c.tag}</span>` : ''}
     `;
     grid.appendChild(a);
   });
