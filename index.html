@@ -118,15 +118,16 @@ img{max-width:100%;display:block}
 .portrait{position:relative}
 .portrait .frame{
   position:relative;border-radius:24px;overflow:hidden;aspect-ratio:1/1.05;
-  background:linear-gradient(150deg,var(--ink),var(--ink-2));
-  box-shadow:var(--shadow);border:6px solid #fff;
+  background:linear-gradient(160deg,#eef5fc,#dbe8f7);
+  box-shadow:var(--shadow);border:6px solid #fff;display:grid;place-items:center;
 }
 .portrait .frame img{width:100%;height:100%;object-fit:cover}
+.portrait .frame .hero-illust{width:90%;height:auto;display:block}
 .portrait .frame .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gold-soft);gap:10px}
 .portrait .frame .ph .big{font-family:"Pretendard",sans-serif;font-size:46px;font-weight:700}
 .portrait .frame .ph small{font-size:14px;opacity:.85}
 .portrait .badge{
-  position:absolute;left:-14px;bottom:24px;background:#fff;border-radius:14px;
+  position:absolute;right:-14px;bottom:24px;background:#fff;border-radius:14px;
   padding:13px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:11px;
   border:1px solid var(--line);
 }
@@ -332,20 +333,41 @@ img{max-width:100%;display:block}
       <div class="hero-trust">
         <div class="t"><b>1:1</b><span>전담 멘토 관리</span></div>
         <div class="sep"></div>
-        <div class="t"><b>18+</b><span>전문 과정 안내</span></div>
+        <div class="t"><b>20+</b><span>전문 과정 안내</span></div>
         <div class="sep"></div>
         <div class="t"><b>무료</b><span>상담 · 학습설계</span></div>
       </div>
     </div>
     <div class="portrait reveal">
       <div class="frame">
-        <img src="https://cdn.myportfolio.com/63d725ff-84a9-4eaa-a986-eabd642e00b7/2fb5d905-120f-4c6b-8d62-926e3f7a65c9_rwc_0x0x1024x1024x4096.png?h=f1a81123389488f13585b4a6a0ebf7e6"
-             alt="한국평생교육관리센터 김동규 멘토"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="ph" style="display:none">
-          <span class="big">동규멘토</span>
-          <small>한국평생교육관리센터</small>
-        </div>
+        <svg class="hero-illust" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="책과 연필 일러스트">
+          <circle cx="220" cy="250" r="172" fill="#ffffff" opacity="0.45"/>
+          <path d="M220 232 L66 262 Q56 264 56 274 L56 352 Q56 360 66 358 L220 330 Z" fill="#0d3f7e"/>
+          <path d="M220 232 L374 262 Q384 264 384 274 L384 352 Q384 360 374 358 L220 330 Z" fill="#1657b0"/>
+          <path d="M220 222 L82 250 L82 338 L220 318 Z" fill="#ffffff"/>
+          <path d="M220 222 L358 250 L358 338 L220 318 Z" fill="#eef5fc"/>
+          <path d="M214 223 L226 223 L226 318 L214 318 Z" fill="#bcd4ef"/>
+          <g fill="#c3d8f0">
+            <rect x="100" y="262" width="95" height="7" rx="3.5"/>
+            <rect x="100" y="280" width="95" height="7" rx="3.5"/>
+            <rect x="100" y="298" width="78" height="7" rx="3.5"/>
+          </g>
+          <g fill="#d3e3f5">
+            <rect x="245" y="262" width="95" height="7" rx="3.5"/>
+            <rect x="245" y="280" width="95" height="7" rx="3.5"/>
+            <rect x="262" y="298" width="78" height="7" rx="3.5"/>
+          </g>
+          <g transform="rotate(-22 230 150)">
+            <rect x="130" y="132" width="150" height="24" rx="5" fill="#f4b63c"/>
+            <rect x="130" y="132" width="150" height="7" rx="3.5" fill="#f8cd6b"/>
+            <rect x="280" y="132" width="18" height="24" fill="#a9b8c8"/>
+            <rect x="298" y="132" width="16" height="24" rx="5" fill="#ef9aa6"/>
+            <path d="M130 132 L104 144 L130 156 Z" fill="#f1dcae"/>
+            <path d="M112 140 L104 144 L112 148 Z" fill="#0d3f7e"/>
+          </g>
+          <path d="M360 158 L366 168 L376 174 L366 180 L360 190 L354 180 L344 174 L354 168 Z" fill="#1565d8"/>
+          <path d="M92 150 L96 158 L104 162 L96 166 L92 174 L88 166 L80 162 L88 158 Z" fill="#cfe1f7"/>
+        </svg>
       </div>
       <div class="badge">
         <span class="dot"></span>
