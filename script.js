@@ -97,6 +97,9 @@ phone.addEventListener('input', ()=>{
 /* =========================================================
    폼 검증 & 제출
    ========================================================= */
+// ▼ 상담 신청서를 이메일로 받으려면 web3forms.com에서 발급받은 Access Key를 아래에 붙여넣으세요.
+//   (키 발급 시 입력한 이메일 ip00118@naver.com 으로 신청 내용이 전송됩니다.)
+const WEB3FORMS_KEY = "2c331aaa-b71d-49c3-8ae5-b877c4a4637a";
 const form = document.getElementById('applyForm');
 const doneCard = document.getElementById('doneCard');
 
@@ -133,6 +136,23 @@ form.addEventListener('submit', (e)=>{
     <div><b>연락처</b><span>${phone.value}</span></div>
     <div><b>관심 과정</b><span>${course.value}</span></div>
     ${memo ? `<div><b>메모</b><span>${memo}</span></div>` : ''}`;
+
+  // 이메일 전송 (Access Key가 설정된 경우에만 실제 전송)
+  if (WEB3FORMS_KEY && WEB3FORMS_KEY !== "YOUR_ACCESS_KEY_HERE") {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: '[홈페이지] 무료 학습컨설팅 신청',
+        from_name: name.value,
+        '이름': name.value,
+        '연락처': phone.value,
+        '관심 과정': course.value,
+        '메모': memo || '(없음)'
+      })
+    }).catch(()=>{});
+  }
 
   form.style.display = 'none';
   doneCard.classList.add('show');
