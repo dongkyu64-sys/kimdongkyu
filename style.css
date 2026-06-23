@@ -269,3 +269,104 @@ img{max-width:100%;display:block}
   .reveal{opacity:1;transform:none}
 }
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+
+
+/* ===================== 방치형 vs 관리형 비교 및 통계 섹션 ===================== */
+.compare { background: #fff; padding-bottom: 40px; }
+.compare-table {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 40px -20px rgba(13,63,126,.15);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 2fr;
+  border-bottom: 1px solid var(--line);
+}
+.compare-row:last-child { border-bottom: none; }
+.compare-row.header {
+  background: var(--paper-2);
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+.compare-row.header .col.bad { color: #8a96a3; background: #f8f9fa; }
+.compare-row.header .col.good { background: var(--ink); color: #fff; font-size: 17px; }
+.col { padding: 26px 20px; display: flex; flex-direction: column; justify-content: center; }
+.col.item { font-weight: 700; color: var(--ink); background: #fafcff; border-right: 1px solid var(--line); text-align:center; font-size: 15.5px; }
+.col.bad { border-right: 1px solid var(--line); background:#fcfdfe; color:var(--muted); }
+.col.good { background: #f4f8fe; color: var(--text); position:relative; z-index:1; border-left: 2px solid var(--gold); }
+.col ul { list-style: none; padding: 0; margin: 0; display:flex; flex-direction:column; gap:12px;}
+.col ul li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.5; letter-spacing: -0.01em; }
+.col.bad ul li::before { content: "△"; position: absolute; left: 0; top: 1px; color: #b0b8c1; font-size: 12px;}
+.col.good ul li::before { content: "✓"; position: absolute; left: 0; top: 1px; color: var(--gold); font-weight:bold; }
+.col.good strong { color: var(--gold-deep); }
+
+.stats-section { background: #fff; padding-bottom: 80px; }
+.stats-card {
+  background-color: var(--gold); 
+  border-radius: var(--radius);
+  padding: 50px 60px;
+  color: #fff;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.stats-label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 999px;
+}
+.stats-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #fff;
+}
+.stats-numbers {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.stats-numbers .divider {
+  font-size: 30px;
+  opacity: 0.5;
+  font-weight: 300;
+}
+.stats-desc {
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .compare-row { grid-template-columns: 1fr; border-bottom: none; }
+  .compare-row.header { display: none; }
+  .col.item { background: var(--paper-2); padding: 14px 20px; text-align: left; border-right: none; border-bottom: 1px solid var(--line); font-size:16px;}
+  .col.bad, .col.good { border-right: none; border-bottom: 1px solid var(--line); padding: 20px;}
+  .col.bad::before { content: "방치형 교육원 🥀"; display:block; font-weight:700; margin-bottom:14px; color:#8a96a3; font-size:13.5px;}
+  .col.good::before { content: "한국평생교육관리센터 🏆"; display:block; font-weight:700; margin-bottom:14px; color:var(--gold-deep); font-size:14.5px;}
+  .col.good { border-left: none; border-bottom: 6px solid var(--paper-2); }
+  .compare-row:last-child .col.good { border-bottom: none; }
+  
+  .stats-card { padding: 40px 30px; }
+  .stats-numbers { font-size: 28px; flex-direction: column; gap: 5px; }
+  .stats-numbers .divider { display: none; }
+}
+
