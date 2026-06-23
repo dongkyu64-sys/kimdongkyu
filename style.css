@@ -247,6 +247,40 @@ img{max-width:100%;display:block}
 @media (max-width:920px){.rev-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.rev-grid{grid-template-columns:1fr}}
 
+/* ===================== 이력 배너 ===================== */
+.record{background:linear-gradient(150deg,var(--ink),var(--ink-2));color:#fff;text-align:center;position:relative;overflow:hidden}
+.record::before{content:"";position:absolute;top:-120px;right:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(21,101,216,.4),transparent 70%)}
+.record .wrap{position:relative}
+.record .eyebrow{justify-content:center;color:var(--gold-soft)}
+.record .eyebrow::before{background:var(--gold-soft)}
+.record-stats{display:flex;align-items:center;justify-content:center;gap:clamp(28px,7vw,80px);margin:20px 0 16px}
+.record-stats .rstat b{display:block;font-size:clamp(34px,6vw,54px);font-weight:800;line-height:1;color:#fff}
+.record-stats .rstat span{display:block;font-size:14px;color:#bcd4ef;margin-top:10px;font-weight:500}
+.record-stats .rsep{width:1px;height:56px;background:rgba(255,255,255,.22)}
+.record-note{color:#cfe1f7;font-size:clamp(15px,2vw,17px)}
+
+/* ===================== 방치형 vs 관리형 비교 ===================== */
+.compare{background:var(--paper)}
+.compare .section-head h2 em{color:var(--gold);font-style:normal}
+.compare-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:20px;align-items:stretch;max-width:940px;margin:0 auto}
+.cmp{border-radius:20px;padding:34px 30px}
+.cmp h3{font-size:21px;font-weight:700;margin-bottom:4px}
+.cmp h3 small{display:block;font-size:13px;font-weight:600;margin-top:6px;opacity:.85}
+.cmp ul{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:15px}
+.cmp li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;line-height:1.55}
+.cmp li .ck{flex:0 0 auto;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;margin-top:1px;color:#fff}
+.cmp li .ck svg{width:13px;height:13px}
+.cmp-bad{background:#eef1f5;color:#7a8595}
+.cmp-bad h3{color:#8995a5}
+.cmp-bad li .ck{background:#cfd6df}
+.cmp-good{background:#fff;color:var(--text);box-shadow:0 30px 60px -30px rgba(13,63,126,.5);border:1px solid var(--gold-soft);position:relative;transform:translateY(-8px)}
+.cmp-good::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--gold),var(--ink))}
+.cmp-good h3{color:var(--ink)}
+.cmp-good h3 small{color:var(--gold-deep)}
+.cmp-good li{color:var(--text);font-weight:500}
+.cmp-good li .ck{background:linear-gradient(135deg,var(--gold),var(--gold-deep))}
+@media (max-width:760px){.compare-grid{grid-template-columns:1fr}.cmp-good{transform:none}}
+
 /* ===================== 반응형 ===================== */
 @media (max-width:920px){
   .hero-grid{grid-template-columns:1fr;gap:34px}
