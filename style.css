@@ -236,8 +236,8 @@ img{max-width:100%;display:block}
 .rev-card .proof img:hover{transform:scale(1.04)}
 .rev-card .proof-tag{position:absolute;margin:10px;background:rgba(13,63,126,.85);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:.02em}
 .rev-card{position:relative}
-.rev-card .quote{font-size:14.5px;color:#3c4854;line-height:1.75;flex:1;position:relative;padding-top:8px}
-.rev-card .quote::before{content:"\201C";position:absolute;top:-12px;left:-3px;font-family:"Pretendard",sans-serif;font-size:44px;color:var(--gold-soft);line-height:1}
+.rev-card .quote{font-size:14.5px;color:#3c4854;line-height:1.75;flex:1;position:relative;padding-top:28px}
+.rev-card .quote::before{content:"\201C";position:absolute;top:-2px;left:0;font-family:"Pretendard",sans-serif;font-size:40px;color:var(--gold-soft);line-height:1;pointer-events:none}
 .rev-card .who{display:flex;align-items:center;gap:11px;border-top:1px solid var(--line);padding-top:15px}
 .rev-card .ava{width:40px;height:40px;border-radius:50%;flex:0 0 auto;background:linear-gradient(140deg,var(--ink),var(--ink-2));color:#fff;display:grid;place-items:center;font-weight:700;font-size:16px}
 .rev-card .who b{display:block;font-size:14px;color:var(--text)}
