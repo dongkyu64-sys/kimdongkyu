@@ -1,4 +1,27 @@
 /* =========================================================
+   라이트박스: 후기 사진 클릭 시 크게 보기
+   ========================================================= */
+(function(){
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lightboxImg');
+  document.querySelectorAll('.rev-card .proof img').forEach(img=>{
+    img.addEventListener('click', ()=>{
+      lbImg.src=img.src; lbImg.alt=img.alt||'';
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+    });
+  });
+  function close(){
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+    lbImg.src='';
+  }
+  document.getElementById('lightboxClose').addEventListener('click', close);
+  lb.addEventListener('click', e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && lb.classList.contains('open')) close(); });
+})();
+
+/* =========================================================
    과정 데이터 (원본 사이트의 실제 링크로 연결)
    ========================================================= */
 const COURSES = [

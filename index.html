@@ -302,6 +302,16 @@ img{max-width:100%;display:block}
 .cmp-good li .ck{background:linear-gradient(135deg,var(--gold),var(--gold-deep))}
 @media (max-width:760px){.compare-grid{grid-template-columns:1fr}.cmp-good{transform:none}}
 
+/* ===================== 라이트박스 (사진 크게 보기) ===================== */
+.lightbox{position:fixed;inset:0;background:rgba(13,30,55,.92);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;animation:lbfade .2s ease}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;border-radius:8px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);animation:lbpop .25s cubic-bezier(.2,.8,.2,1)}
+.lightbox-close{position:absolute;top:18px;right:22px;width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:24px;font-weight:300;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.lightbox-close:hover{background:rgba(255,255,255,.22)}
+.lightbox-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.65);font-size:13px;letter-spacing:.02em;pointer-events:none}
+@keyframes lbfade{from{opacity:0}to{opacity:1}}
+@keyframes lbpop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+
 /* ===================== 반응형 ===================== */
 @media (max-width:920px){
   .hero-grid{grid-template-columns:1fr;gap:34px}
@@ -696,11 +706,42 @@ img{max-width:100%;display:block}
   </div>
 </footer>
 
+
+<!-- 사진 크게 보기 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="닫기">✕</button>
+  <img src="" alt="" id="lightboxImg">
+  <span class="lightbox-hint">바깥을 클릭하거나 ESC를 누르면 닫힙니다</span>
+</div>
+
 <button class="to-top" id="toTop" aria-label="맨 위로">
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
 </button>
 
 <script>
+/* =========================================================
+   라이트박스: 후기 사진 클릭 시 크게 보기
+   ========================================================= */
+(function(){
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lightboxImg');
+  document.querySelectorAll('.rev-card .proof img').forEach(img=>{
+    img.addEventListener('click', ()=>{
+      lbImg.src=img.src; lbImg.alt=img.alt||'';
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+    });
+  });
+  function close(){
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+    lbImg.src='';
+  }
+  document.getElementById('lightboxClose').addEventListener('click', close);
+  lb.addEventListener('click', e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && lb.classList.contains('open')) close(); });
+})();
+
 /* =========================================================
    과정 데이터 (원본 사이트의 실제 링크로 연결)
    ========================================================= */
