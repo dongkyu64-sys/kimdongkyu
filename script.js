@@ -34,7 +34,7 @@ const COURSES = [
   {name:"청소년지도사", cat:"국가자격", group:"license", tag:"", desc:"청소년지도사 자격 취득 경로를 안내합니다.", url:"https://dongmento.myportfolio.com/16a30dddd77daf"},
   {name:"심리상담사 (국가자격증)", cat:"국가자격", group:"license", tag:"", desc:"국가 공인 심리상담 관련 자격 취득 과정.", url:"https://dongmento.myportfolio.com/16a2a11b2d3d23"},
   {name:"심리상담사 (학회자격증)", cat:"민간/학회", group:"license", tag:"", desc:"학회 발급 심리상담 자격, 실무 중심 과정.", url:"https://dongmento.myportfolio.com/16a30ddf4bae10"},
-  {name:"도서관 사서", cat:"국가자격", group:"license", tag:"", desc:"준사서·사서 자격을 학점은행제로 준비.", url:"https://dongmento.myportfolio.com/2"},
+  {name:"도서관 사서", cat:"국가자격", group:"license", tag:"", desc:"정사서 2급 취득 과정.", url:"https://dongmento.myportfolio.com/2"},
   {name:"예체능 (체육 · 미용)", cat:"전공", group:"license", tag:"", desc:"체육·미용 전공 학위 및 자격 과정.", url:"https://dongmento.myportfolio.com/1"},
   {name:"기타 교육 과정", cat:"전체", group:"etc", tag:"", desc:"위에 없는 분야도 문의 주시면 안내해 드립니다.", url:"https://dongmento.myportfolio.com/16a2a13854fc8b"},
   {name:"스펙업 자격증", cat:"스펙업", group:"etc", tag:"", desc:"취업·이직에 보탬이 되는 자격증을 모았습니다.", url:"https://dongmento.myportfolio.com/16a2a153bc24e5"},
