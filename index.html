@@ -70,7 +70,7 @@ img{max-width:100%;display:block}
 }
 .brand .txt small{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
 .brand .txt strong{display:block;font-size:15px;line-height:1.2}
-.nav-links{display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;align-items:center;gap:10px;margin-left:auto}
 .nav-links a{display:inline-flex;align-items:center;justify-content:center;min-width:94px;font-size:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--gold),var(--gold-deep));border-radius:999px;padding:11px 18px;line-height:1;box-shadow:0 10px 24px -12px rgba(13,78,176,.5);transition:transform .15s,box-shadow .2s}
 .nav-links a:hover,.nav-links a:focus-visible{transform:translateY(-2px)}
 .btn{
@@ -80,6 +80,8 @@ img{max-width:100%;display:block}
   transition:transform .15s,box-shadow .2s,background .2s;
 }
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;box-shadow:0 10px 24px -12px rgba(13,78,176,.5)}
+.btn-cta-outline{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);font-weight:800;transition:background .2s,color .2s,transform .15s}
+.btn-cta-outline:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
 .btn-gold:hover{transform:translateY(-2px)}
 .btn-ink{background:var(--ink);color:#fff}
 .btn-ink:hover{background:var(--ink-2);transform:translateY(-2px)}
@@ -352,9 +354,8 @@ img{max-width:100%;display:block}
       <a href="#why">학습관리</a>
       <a href="#reviews">합격후기</a>
       <a href="#courses">과정안내</a>
-      <a href="#apply">상담신청</a>
     </nav>
-    <a href="#apply" class="btn btn-gold">💌 무료 학습컨설팅</a>
+    <a href="#apply" class="btn btn-cta-outline">상담신청</a>
     <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -366,7 +367,7 @@ img{max-width:100%;display:block}
   <a href="#reviews">합격·취득 후기</a>
   <a href="#courses">전체 과정 안내</a>
   <a href="#apply">무료 상담 신청</a>
-  <a href="#apply" class="btn btn-gold">💌 무료 학습컨설팅 신청</a>
+  <a href="#apply" class="btn btn-cta-outline">상담신청</a>
 </div>
 
 <main id="top">
@@ -379,7 +380,7 @@ img{max-width:100%;display:block}
       <h1 class="serif">시행착오 없는<br>가장 <span class="hl">빠르고 안전한</span> 길을<br>안내합니다.</h1>
       <p class="lead">학점은행제로 학위와 자격증, 진학까지. 처음 시작하는 분도 막막하지 않도록, 김동규 멘토가 등록부터 졸업·자격 취득까지 <strong>1:1로 끝까지</strong> 함께합니다.</p>
       <div class="hero-cta">
-        <a href="#apply" class="btn btn-gold">💌 무료 학습컨설팅 신청</a>
+        <a href="#apply" class="btn btn-cta-outline">상담신청</a>
         <a href="#courses" class="btn btn-ghost">과정 둘러보기</a>
       </div>
       <div class="hero-trust">

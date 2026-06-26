@@ -54,7 +54,7 @@ img{max-width:100%;display:block}
 }
 .brand .txt small{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.02em}
 .brand .txt strong{display:block;font-size:15px;line-height:1.2}
-.nav-links{display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;align-items:center;gap:10px;margin-left:auto}
 .nav-links a{display:inline-flex;align-items:center;justify-content:center;min-width:94px;font-size:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--gold),var(--gold-deep));border-radius:999px;padding:11px 18px;line-height:1;box-shadow:0 10px 24px -12px rgba(13,78,176,.5);transition:transform .15s,box-shadow .2s}
 .nav-links a:hover,.nav-links a:focus-visible{transform:translateY(-2px)}
 .btn{
@@ -64,6 +64,8 @@ img{max-width:100%;display:block}
   transition:transform .15s,box-shadow .2s,background .2s;
 }
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;box-shadow:0 10px 24px -12px rgba(13,78,176,.5)}
+.btn-cta-outline{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);font-weight:800;transition:background .2s,color .2s,transform .15s}
+.btn-cta-outline:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
 .btn-gold:hover{transform:translateY(-2px)}
 .btn-ink{background:var(--ink);color:#fff}
 .btn-ink:hover{background:var(--ink-2);transform:translateY(-2px)}
