@@ -149,7 +149,7 @@ img{max-width:100%;display:block}
 .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 .course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .course{
-  position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;
+  position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;font-family:inherit;text-align:left;cursor:pointer;
   padding:22px 22px 20px;display:flex;flex-direction:column;gap:6px;
   transition:transform .25s,box-shadow .25s,border-color .25s;
   animation:pop .4s both;
@@ -291,22 +291,36 @@ img{max-width:100%;display:block}
 /* ===================== 라이트박스 (사진 크게 보기) ===================== */
 .lightbox{position:fixed;inset:0;background:rgba(13,30,55,.92);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;animation:lbfade .2s ease}
 .lightbox.open{display:flex}
-.lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;border-radius:8px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);animation:lbpop .25s cubic-bezier(.2,.8,.2,1)}
+.lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);animation:lbpop .25s cubic-bezier(.2,.8,.2,1)}
 .lightbox-close{position:absolute;top:18px;right:22px;width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:24px;font-weight:300;cursor:pointer;display:grid;place-items:center;transition:background .2s}
 .lightbox-close:hover{background:rgba(255,255,255,.22)}
 .lightbox-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.65);font-size:13px;letter-spacing:.02em;pointer-events:none}
 @keyframes lbfade{from{opacity:0}to{opacity:1}}
 @keyframes lbpop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
 
+
+/* ===================== 과정 안내 모달 ===================== */
+.cmodal{position:fixed;inset:0;background:rgba(13,30,55,.7);backdrop-filter:blur(4px);z-index:210;display:none;align-items:center;justify-content:center;padding:20px;animation:lbfade .2s ease}
+.cmodal.open{display:flex}
+.cmodal-card{background:#fff;border-radius:18px;max-width:440px;width:100%;padding:34px 30px 28px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);position:relative;animation:lbpop .25s cubic-bezier(.2,.8,.2,1);max-height:90vh;overflow-y:auto}
+.cmodal-cat{font-size:12.5px;font-weight:700;color:var(--gold-deep);letter-spacing:.03em;margin-bottom:8px}
+.cmodal-card h3{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.35}
+.cmodal-card p{font-size:15px;color:var(--text);line-height:1.65;margin-bottom:22px;white-space:pre-line}
+.cmodal-hint{background:var(--paper-2);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#46505c;line-height:1.55;margin-bottom:20px}
+.cmodal-actions{display:flex;flex-direction:column;gap:9px}
+.cmodal-actions .btn{width:100%;justify-content:center;padding:13px;font-size:15px}
+.cmodal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:none;border-radius:50%;background:transparent;color:var(--muted);font-size:22px;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.cmodal-close:hover{background:var(--paper-2);color:var(--ink)}
+
 /* ===================== 반응형 ===================== */
 @media (max-width:920px){
   .hero-grid{grid-template-columns:1fr;gap:34px}
-  .portrait{max-width:380px;margin-inline:auto;order:-1}
+  .portrait{max-width:300px;margin-inline:auto;order:-1}
   .why-grid{grid-template-columns:1fr}
   .course-grid{grid-template-columns:repeat(2,1fr)}
   .apply-grid{grid-template-columns:1fr;gap:34px}
   .nav-links{display:none}
-  .nav .btn-gold{display:none}
+  .nav .btn-gold,.nav .btn-cta-outline{display:none}
   .hamburger{display:flex}
 }
 @media (max-width:540px){
