@@ -196,10 +196,6 @@ img{max-width:100%;display:block}
 .consent input{width:18px;height:18px;margin-top:2px;flex:0 0 auto;accent-color:var(--gold-deep)}
 .form-card .btn{width:100%;justify-content:center;font-size:16px;padding:15px}
 .form-note{text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
-.or-divider{display:flex;align-items:center;gap:14px;margin:22px 0 14px;color:var(--muted);font-size:12.5px;font-weight:600}
-.or-divider::before,.or-divider::after{content:"";flex:1;height:1px;background:var(--line)}
-.btn-kakao{background:#FEE500;color:#191600;box-shadow:0 10px 24px -12px rgba(0,0,0,.3)}
-.btn-kakao:hover{transform:translateY(-2px);background:#fada0a}
 
 /* 신청 완료 카드 */
 .done{display:none;text-align:center;padding:14px 6px 6px}
@@ -240,7 +236,6 @@ img{max-width:100%;display:block}
 .rev-card .proof{margin:0 0 4px;max-height:300px;background:var(--paper-2);overflow:hidden;display:grid;place-items:center;border:1.5px solid var(--ink);border-radius:12px;padding:6px}
 .rev-card .proof img{width:100%;max-height:300px;height:auto;object-fit:contain;display:block;cursor:zoom-in;transition:transform .35s}
 .rev-card .proof img:hover{transform:scale(1.02)}
-.rev-card .proof-tag{position:absolute;margin:10px;background:rgba(13,63,126,.85);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:.02em}
 .rev-card{position:relative}
 .rev-card .quote{font-size:14.5px;color:#3c4854;line-height:1.75;flex:1;position:relative;padding-top:28px}
 .rev-card .quote::before{content:"\201C";position:absolute;top:-2px;left:0;font-family:"Pretendard",sans-serif;font-size:40px;color:var(--gold-soft);line-height:1;pointer-events:none}
