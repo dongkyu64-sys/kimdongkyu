@@ -300,8 +300,8 @@ img{max-width:100%;display:block}
 .blog-link .bl-go svg{width:14px;height:14px}
 @media (max-width:760px){
   .blog-links{grid-template-columns:1fr;gap:12px}
-  .blog-link{padding:16px}
-  .blog-link .bl-go{display:none}
+  .blog-link{padding:16px;flex-wrap:wrap}
+  .blog-link .bl-go{width:100%;justify-content:flex-end;margin-top:12px;padding-top:11px;border-top:1px solid var(--line)}
 }
 
 /* ===================== 라이트박스 (사진 크게 보기) ===================== */
